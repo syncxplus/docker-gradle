@@ -1,6 +1,6 @@
 # Gradle Executable Container
 
-This docker image includes Oracle Java 7 and Gradle 2.1 configured with Gradle as the entrypoint.
+This docker image includes OpenJDK 8 and Gradle 2.5 configured with Gradle as the entrypoint.
 
 ## Usage
 
