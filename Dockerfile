@@ -1,4 +1,4 @@
-FROM dockerfile/java:oracle-java7
+FROM java:8-jdk
 MAINTAINER Nicholas Iaquinto <nickiaq@gmail.com>
 
 # In case someone loses the Dockerfile
@@ -6,7 +6,7 @@ RUN rm -rf /etc/Dockerfile
 ADD Dockerfile /etc/Dockerfile
 
 # Gradle
-ENV GRADLE_VERSION 2.2.1
+ENV GRADLE_VERSION 2.5
 WORKDIR /usr/bin
 RUN wget "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" && \
     unzip "gradle-${GRADLE_VERSION}-bin.zip" && \
