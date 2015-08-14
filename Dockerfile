@@ -1,28 +1,28 @@
 FROM java:8-jdk
 MAINTAINER Nicholas Iaquinto <nickiaq@gmail.com>
 
-# In case someone loses the Dockerfile
-RUN rm -rf /etc/Dockerfile
-ADD Dockerfile /etc/Dockerfile
-
 # Gradle
-ENV GRADLE_VERSION 2.5
+ENV GRADLE_VERSION 2.6
+ENV GRADLE_HASH 88a116b028e4749c9d77e514904755a9
 WORKDIR /usr/bin
-RUN wget "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" && \
+RUN wget "https://downloads.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" && \
+    echo "${GRADLE_HASH} gradle-${GRADLE_VERSION}-bin.zip" > gradle-${GRADLE_VERSION}-bin.zip.md5 && \
+    md5sum -c gradle-${GRADLE_VERSION}-bin.zip.md5 && \
     unzip "gradle-${GRADLE_VERSION}-bin.zip" && \
     ln -s "gradle-${GRADLE_VERSION}" gradle && \
-    rm "gradle-${GRADLE_VERSION}-bin.zip"
+    rm "gradle-${GRADLE_VERSION}-bin.zip" && \
+    mkdir -p /usr/bin/app
 
 # Set Appropriate Environmental Variables
 ENV GRADLE_HOME /usr/bin/gradle
 ENV PATH $PATH:$GRADLE_HOME/bin
 
 # Caches
-VOLUME ["/root/.gradle/caches"]
+VOLUME /root/.gradle/caches
 
 # Default command is "/usr/bin/gradle -version" on /app dir
 # (ie. Mount project at /app "docker --rm -v /path/to/app:/app gradle <command>")
-VOLUME ["/app"]
-WORKDIR /app
-ENTRYPOINT ["gradle"]
-CMD ["-version"]
+VOLUME /usr/bin/app
+WORKDIR /usr/bin/app
+ENTRYPOINT gradle
+CMD -version
