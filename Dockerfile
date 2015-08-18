@@ -11,10 +11,10 @@ RUN wget "https://downloads.gradle.org/distributions/gradle-${GRADLE_VERSION}-bi
     unzip "gradle-${GRADLE_VERSION}-bin.zip" && \
     ln -s "gradle-${GRADLE_VERSION}" gradle && \
     rm "gradle-${GRADLE_VERSION}-bin.zip" && \
-    mkdir -p /usr/bin/app
+    mkdir -p /usr/src/app
 
 # Set Appropriate Environmental Variables
-ENV GRADLE_HOME /usr/bin/gradle
+ENV GRADLE_HOME /usr/src/gradle
 ENV PATH $PATH:$GRADLE_HOME/bin
 
 # Caches
