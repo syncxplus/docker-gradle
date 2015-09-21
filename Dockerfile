@@ -4,12 +4,12 @@ MAINTAINER Nicholas Iaquinto <nickiaq@gmail.com>
 # Gradle
 ENV GRADLE_VERSION 2.6
 ENV GRADLE_HASH 88a116b028e4749c9d77e514904755a9
-WORKDIR /usr/bin
+WORKDIR /usr/lib
 RUN wget "https://downloads.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" && \
     echo "${GRADLE_HASH} gradle-${GRADLE_VERSION}-bin.zip" > gradle-${GRADLE_VERSION}-bin.zip.md5 && \
     md5sum -c gradle-${GRADLE_VERSION}-bin.zip.md5 && \
     unzip "gradle-${GRADLE_VERSION}-bin.zip" && \
-    ln -s "gradle-${GRADLE_VERSION}" gradle && \
+    ln -s "/usr/lib/gradle-${GRADLE_VERSION}/bin/gradle" /usr/bin/gradle && \
     rm "gradle-${GRADLE_VERSION}-bin.zip" && \
     mkdir -p /usr/src/app
 
