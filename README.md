@@ -1,6 +1,6 @@
 # Gradle Executable Container
 
-This docker image includes OpenJDK 8 and Gradle 2.6 configured with Gradle as the entrypoint.
+This docker image includes OpenJDK 8 and Gradle 2.7 configured with Gradle as the entrypoint.
 
 ## Usage
 
