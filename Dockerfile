@@ -14,7 +14,7 @@ RUN rm "gradle-${GRADLE_VERSION}-bin.zip"
 RUN mkdir -p /usr/src/app
 
 # Set Appropriate Environmental Variables
-ENV GRADLE_HOME /usr/src/gradle
+ENV GRADLE_HOME /usr/lib/gradle
 ENV PATH $PATH:$GRADLE_HOME/bin
 
 # Caches
