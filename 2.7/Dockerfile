@@ -10,8 +10,7 @@ RUN cd /usr/lib \
  && echo "$GRADLE_SHA gradle-bin.zip" | sha256sum -c - \
  && unzip "gradle-bin.zip" \
  && ln -s "/usr/lib/gradle-${GRADLE_VERSION}/bin/gradle" /usr/bin/gradle \
- && rm "gradle-bin.zip" \
- && mkdir -p /usr/src/app
+ && rm "gradle-bin.zip"
 
 # Set Appropriate Environmental Variables
 ENV GRADLE_HOME /usr/lib/gradle
