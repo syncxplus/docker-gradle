@@ -14,7 +14,7 @@ docker run --rm -v /path/to/your/project:/usr/bin/app:rw niaquinto/gradle clean 
 ```
 
 ### Plugins
-Of course, you can use any command here, including those dependent on plugins. For example, if you project inlcudes the Jetty plugin (by including `apply plugin: 'jetty'` in its build.gradle) you can run the following command to start an instance of Jetty running a WAR of your application on port 8080 on the host.
+Of course, you can use any command here, including those dependent on plugins. For example, if you project includes the Jetty plugin (by including `apply plugin: 'jetty'` in its build.gradle) you can run the following command to start an instance of Jetty running a WAR of your application on port 8080 on the host.
 
 ```bash
 docker run --rm -p 8080:8080 -v /path/to/your/project:/usr/bin/app:rw niaquinto/gradle jettyRunWar
