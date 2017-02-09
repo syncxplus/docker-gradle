@@ -1,6 +1,6 @@
 # Gradle Executable Container
 
-This docker image includes OpenJDK 8 and Gradle 2.7 configured with Gradle as the entrypoint.
+This docker image includes OpenJDK 8 and Gradle 3.3 configured with Gradle as the entrypoint.
 
 ## Usage
 
@@ -21,23 +21,12 @@ docker run --rm -p 8080:8080 -v /path/to/your/project:/usr/bin/app:rw niaquinto/
 ```
 
 ### Changing the Default Behavior
-Say you want `gradle clean war` to run if you launch the container without any options. To do that, just make a new dockerfile like the following. Also, while your at it, you should change the user to match your development environment (so that running the container doesn't keep chown'ing your /build directory to root).
+Say you want `gradle clean war` to run if you launch the container without any options. To do that, just make a new dockerfile like the following:
 
 ```bash
 # Use this image as a base
 FROM niaquinto/gradle
 MAINTAINER your-name <your@email.com>
-
-# In case someone loses the Dockerfile
-RUN rm -rf /etc/Dockerfile
-ADD Dockerfile /etc/Dockerfile
-
-# Add your desired user and group
-RUN groupadd your-group-name
-RUN useradd -s /bin/bash -m -d /usr/bin/app -g your-group-name your-user-name
-
-# Set your desired user as default
-USER your-user-name
 
 # Set your default behavior
 ENTRYPOINT ["gradle"]
