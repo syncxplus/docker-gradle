@@ -2,8 +2,8 @@ FROM openjdk:8-jdk
 MAINTAINER Nicholas Iaquinto <nickiaq@gmail.com>
 
 # Gradle
-ENV GRADLE_VERSION 3.2.1
-ENV GRADLE_SHA 9843a3654d3e57dce54db06d05f18b664b95c22bf90c6becccb61fc63ce60689
+ENV GRADLE_VERSION 3.3
+ENV GRADLE_SHA c58650c278d8cf0696cab65108ae3c8d95eea9c1938e0eb8b997095d5ca9a292
 
 RUN cd /usr/lib \
  && curl -fl https://downloads.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -o gradle-bin.zip \
