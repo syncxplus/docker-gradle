@@ -1,9 +1,10 @@
 FROM openjdk:8u171-jdk-stretch
-MAINTAINER Nicholas Iaquinto <nickiaq@gmail.com>
+
+LABEL maintainer="jibo@outlook.com"
 
 # Gradle
-ENV GRADLE_VERSION 2.14.1
-ENV GRADLE_SHA cfc61eda71f2d12a572822644ce13d2919407595c2aec3e3566d2aab6f97ef39
+ENV GRADLE_VERSION 4.9
+ENV GRADLE_SHA e66e69dce8173dd2004b39ba93586a184628bc6c28461bc771d6835f7f9b0d28
 
 RUN cd /usr/lib \
  && curl -fl https://downloads.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -o gradle-bin.zip \
@@ -22,6 +23,13 @@ WORKDIR /usr/bin/app
 ENTRYPOINT ["gradle"]
 CMD ["-version"]
 
-VOLUME ["/root/.gradle/caches", "/usr/bin/app"]
 COPY init.gradle /root/.gradle/init.gradle
-RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone
+VOLUME ["/root/.gradle/caches", "/usr/bin/app"]
+RUN apt-get update \
+ && apt-get install -y --allow-unauthenticated --no-install-recommends locales \
+ && apt-get clean && rm -r /var/lib/apt/lists/* \
+ && sed -i 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/1' /etc/locale.gen \
+ && locale-gen \
+ && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+ && echo "Asia/Shanghai" > /etc/timezone
+ENV LANG zh_CN.UTF-8
