@@ -1,13 +1,13 @@
-FROM openjdk:8u171-jdk-stretch
+FROM openjdk:8u181-jdk-stretch
 
 LABEL maintainer="jibo@outlook.com"
 
 # Gradle
-ENV GRADLE_VERSION 4.9
-ENV GRADLE_SHA e66e69dce8173dd2004b39ba93586a184628bc6c28461bc771d6835f7f9b0d28
+ENV GRADLE_VERSION 4.10.1
+ENV GRADLE_SHA e53ce3a01cf016b5d294eef20977ad4e3c13e761ac1e475f1ffad4c6141a92bd
 
 RUN cd /usr/lib \
- && curl -fl https://downloads.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -o gradle-bin.zip \
+ && curl https://downloads.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -o gradle-bin.zip \
  && echo "$GRADLE_SHA gradle-bin.zip" | sha256sum -c - \
  && unzip "gradle-bin.zip" \
  && ln -s "/usr/lib/gradle-${GRADLE_VERSION}/bin/gradle" /usr/bin/gradle \
